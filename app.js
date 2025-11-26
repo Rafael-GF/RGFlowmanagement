@@ -377,17 +377,7 @@ function initCharts() {
     if (document.getElementById('reportPieChart')) drawReportPieChart();
     if (document.getElementById('horizontalBarChart')) drawHorizontalBarChart();
 }
-    // Re-draw charts to ensure they are visible after login
-    drawPieChart();
-    drawBarChart();
-    drawReportPieChart();
-    drawHorizontalBarChart();
-}
-    drawPieChart();
-    drawBarChart();
-    drawReportPieChart();
-    drawHorizontalBarChart();
-}
+
 
 // ==================== DARK MODE ====================
 function initDarkMode() {
