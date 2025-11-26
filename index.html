@@ -1,219 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8">
   <title>RGFlow Management</title>
   <link rel="stylesheet" href="style.css">
-  <!-- icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Chart.js para gráficos -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- APP -->
-  <div id="app">
 
-    <!-- LOGIN (visível se não logado) -->
-    <section id="screen-login" class="screen centered">
-      <div class="card login-card">
-        <div class="logo-square">RF</div>
-        <h2>RGFlow Management</h2>
-        <p class="muted">Sistema de Gestão Empresarial</p>
+  <!-- LOGIN PAGE -->
+  <section id="loginPage" class="page visible">
+    <div class="login-box">
+      <h1>RGFlow Management</h1>
+      <p>Acesse sua conta</p>
 
-        <form id="form-login" class="form">
-          <label>E-mail</label>
-          <input id="login-email" type="email" placeholder="seu@email.com" required>
-          <label>Senha</label>
-          <div class="pw-row">
-            <input id="login-pass" type="password" placeholder="••••••••" required>
-            <button id="toggle-pw" type="button" class="icon-btn"><i class="fa fa-eye"></i></button>
-          </div>
+      <input id="loginEmail" type="email" placeholder="E-mail">
+      <input id="loginPassword" type="password" placeholder="Senha">
 
-          <div class="row-between" style="margin-top:8px">
-            <label class="small"><input id="remember" type="checkbox"> Lembrar-me</label>
-            <a href="#" class="link small">Esqueci a senha</a>
-          </div>
+      <button id="loginBtn">Entrar</button>
+    </div>
+  </section>
 
-          <button class="btn primary big" type="submit"><i class="fa fa-lock"></i> Entrar</button>
-        </form>
+  <!-- APP WRAPPER -->
+  <div id="app" class="hidden">
 
-        <p class="muted small center">Não tem uma conta? <a href="#" id="request-access">Solicitar acesso</a></p>
-      </div>
-    </section>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="logo">RGFlow</h2>
 
-    <!-- MAIN APP (visível se logado) -->
-    <section id="screen-app" class="hidden">
-      <aside class="sidebar">
-        <div class="sidebar-top">
-          <div class="brand">
-            <div class="brand-icon">RF</div>
-            <div class="brand-text">
-              <div class="brand-title">RGFlow Management</div>
-            </div>
-          </div>
-        </div>
+      <nav>
+        <button class="nav-btn active" data-page="dashboardPage">Dashboard</button>
+        <button class="nav-btn" data-page="atendimentosPage">Atendimentos</button>
+        <button class="nav-btn" data-page="tarefasPage">Tarefas</button>
+        <button class="nav-btn" data-page="documentosPage">Documentos</button>
+        <button class="nav-btn" data-page="relatoriosPage">Relatorios</button>
+      </nav>
+    </aside>
 
-        <nav class="nav">
-          <a href="#" data-route="dashboard" class="nav-link active"><i class="fa fa-grid-2"></i> Dashboard</a>
-          <a href="#" data-route="atendimentos" class="nav-link"><i class="fa fa-headset"></i> Atendimentos</a>
-          <a href="#" data-route="tarefas" class="nav-link"><i class="fa fa-check-square"></i> Tarefas</a>
-          <a href="#" data-route="documentos" class="nav-link"><i class="fa fa-folder"></i> Documentos</a>
-          <a href="#" data-route="relatorios" class="nav-link"><i class="fa fa-chart-pie"></i> Relatórios</a>
-        </nav>
+    <!-- MAIN CONTENT -->
+    <main class="content">
 
-        <div class="sidebar-footer muted">v2.0.0 • RGFlow</div>
-      </aside>
+      <!-- DASHBOARD -->
+      <section id="dashboardPage" class="page visible">
+        <h1>Dashboard</h1>
+        <p>Bem-vindo ao painel geral.</p>
+      </section>
 
-      <main class="main">
-        <header class="topbar">
-          <div>
-            <h2 id="page-title">Dashboard</h2>
-            <p class="muted small" id="page-sub">Visão geral do sistema</p>
-          </div>
-          <div class="top-actions">
-            <select id="filter-period">
-              <option>Últimos 30 dias</option>
-              <option>Últimos 7 dias</option>
-              <option>Últimos 90 dias</option>
-            </select>
-            <button id="btn-new" class="btn success"><i class="fa fa-plus"></i> Novo Atendimento</button>
-            <div class="user-pill">
-              <i class="fa fa-bell"></i><span class="badge" id="badge-notif">0</span>
-              <div class="user-name">Admin RGFlow <button id="logout" class="icon-btn" title="Sair"><i class="fa fa-sign-out-alt"></i></button></div>
-            </div>
-          </div>
-        </header>
+      <!-- ATENDIMENTOS -->
+      <section id="atendimentosPage" class="page hidden">
+        <h1>Atendimentos</h1>
+        <input type="file">
+        <p>Upload de documentos disponível.</p>
+      </section>
 
-        <div class="content">
-          <!-- DASHBOARD -->
-          <div id="view-dashboard" class="view">
+      <!-- TAREFAS -->
+      <section id="tarefasPage" class="page hidden">
+        <h1>Tarefas</h1>
+      </section>
 
-            <div class="card-row">
-              <div class="card stat">
-                <div class="stat-title">Atendimentos Novos</div>
-                <div class="stat-value" id="stat-new">0</div>
-                <div class="muted small">+12% esta semana</div>
-              </div>
+      <!-- DOCUMENTOS -->
+      <section id="documentosPage" class="page hidden">
+        <h1>Documentos</h1>
+      </section>
 
-              <div class="card stat">
-                <div class="stat-title">Tarefas Pendentes</div>
-                <div class="stat-value" id="stat-pending">0</div>
-                <div class="muted small danger">-8% esta semana</div>
-              </div>
+      <!-- RELATORIOS -->
+      <section id="relatoriosPage" class="page hidden">
+        <h1>Relatórios</h1>
+      </section>
 
-              <div class="card stat">
-                <div class="stat-title">Em Andamento</div>
-                <div class="stat-value" id="stat-running">0</div>
-              </div>
-
-              <div class="card stat">
-                <div class="stat-title">Encaminhados</div>
-                <div class="stat-value" id="stat-forwarded">0</div>
-                <div class="muted small success">+5% esta semana</div>
-              </div>
-
-              <div class="card stat">
-                <div class="stat-title">Tarefas Atrasadas</div>
-                <div class="stat-value" id="stat-overdue">0</div>
-              </div>
-            </div>
-
-            <div class="card card-wide">
-              <div class="card-head">Taxa de Conclusão <span class="muted small" id="rate-text">0%</span></div>
-              <div class="progressbar"><div id="rate-bar" class="progress-fill" style="width:0%"></div></div>
-            </div>
-
-            <div class="grid-2">
-              <div class="card">
-                <h3>Distribuição de Tarefas</h3>
-                <canvas id="chart-pie" height="220"></canvas>
-              </div>
-              <div class="card">
-                <h3>Tarefas - Últimos 7 dias</h3>
-                <canvas id="chart-bar" height="220"></canvas>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- ATENDIMENTOS -->
-          <div id="view-atendimentos" class="view hidden">
-            <div class="card-row">
-              <button id="btn-create-atendimento" class="btn primary"><i class="fa fa-plus"></i> Novo Atendimento</button>
-              <input id="search-atendimento" placeholder="Pesquisar atendimentos..." class="input">
-            </div>
-
-            <div id="list-atendimentos"></div>
-
-            <!-- modal nova ficha simples -->
-            <div id="modal-att" class="modal hidden">
-              <div class="modal-card">
-                <h3>Novo Atendimento</h3>
-                <label>Cliente</label>
-                <input id="att-client" placeholder="Nome do cliente">
-                <label>Descrição</label>
-                <textarea id="att-desc" placeholder="Descrição do atendimento"></textarea>
-                <label>Arquivos</label>
-                <input id="att-files" type="file" multiple>
-                <div class="row-between" style="margin-top:12px">
-                  <button id="save-att" class="btn success">Salvar</button>
-                  <button id="close-att" class="btn">Cancelar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TAREFAS -->
-          <div id="view-tarefas" class="view hidden">
-            <div class="card-row">
-              <input id="new-task-input" placeholder="Criar nova tarefa..." class="input" />
-              <button id="add-task" class="btn primary">Adicionar</button>
-            </div>
-
-            <div id="tasks-list" class="card"></div>
-          </div>
-
-          <!-- DOCUMENTOS -->
-          <div id="view-documentos" class="view hidden">
-            <div class="card-row">
-              <input id="doc-files" type="file" multiple>
-              <button id="upload-docs" class="btn success">Upload</button>
-            </div>
-
-            <div id="docs-list" class="card"></div>
-          </div>
-
-          <!-- RELATÓRIOS -->
-          <div id="view-relatorios" class="view hidden">
-            <div class="card">
-              <h3>Relatórios</h3>
-              <p class="muted">Exportar CSV ou visualizar gráficos</p>
-              <div class="row-between" style="margin-top:12px">
-                <button id="export-csv" class="btn">Exportar CSV</button>
-                <button id="refresh-reports" class="btn">Atualizar</button>
-              </div>
-            </div>
-
-            <div class="grid-2">
-              <div class="card">
-                <h4>Resumo de Atendimentos</h4>
-                <canvas id="chart-line" height="160"></canvas>
-              </div>
-              <div class="card">
-                <h4>Resumo Tarefas</h4>
-                <canvas id="chart-donut" height="160"></canvas>
-              </div>
-            </div>
-          </div>
-
-        </div> <!-- .content -->
-      </main>
-    </section>
-
+    </main>
   </div>
 
   <script src="app.js"></script>
 </body>
 </html>
-<!-- update -->
