@@ -372,6 +372,12 @@ function drawHorizontalBarChart() {
 
 function initCharts() {
     // Re-draw charts to ensure they are visible after login
+    if (document.getElementById('pieChart')) drawPieChart();
+    if (document.getElementById('barChart')) drawBarChart();
+    if (document.getElementById('reportPieChart')) drawReportPieChart();
+    if (document.getElementById('horizontalBarChart')) drawHorizontalBarChart();
+}
+    // Re-draw charts to ensure they are visible after login
     drawPieChart();
     drawBarChart();
     drawReportPieChart();
