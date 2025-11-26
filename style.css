@@ -1,0 +1,78 @@
+:root{
+  --bg:#f5f7fb; --card:#ffffff; --muted:#6b7280; --accent:#1f7ae0; --success:#16a34a; --danger:#ef4444;
+  --shadow: 0 6px 18px rgba(16,24,40,0.06);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#111;font-size:15px;min-height:100vh}
+
+/* hide by default helper */
+.hidden{display:none}
+
+/* Centered login screen */
+.centered{display:flex;align-items:center;justify-content:center;height:100vh}
+.card{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:16px}
+.login-card{width:360px;text-align:center;padding:28px}
+.logo-square{width:72px;height:72px;border-radius:14px;margin:0 auto 12px;background:linear-gradient(135deg,#0ea5a0,#0f1724);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.center{text-align:center}
+
+/* form */
+.form label{display:block;text-align:left;margin:10px 0 6px;font-size:13px}
+.form input, .form textarea, .input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6edf3;background:#fff;outline:none}
+.pw-row{display:flex;gap:8px}
+.icon-btn{background:transparent;border:0;cursor:pointer;padding:6px}
+.btn{padding:8px 12px;border-radius:8px;border:0;background:#eef2ff;cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,#2b6fd6,#0ea5a0);color:#fff}
+.btn.success{background:linear-gradient(90deg,#10b981,#059669);color:#fff}
+.btn.big{padding:12px 18px}
+.row-between{display:flex;align-items:center;justify-content:space-between}
+
+/* APP LAYOUT */
+#screen-app{display:flex}
+.sidebar{width:260px;background:#fff;border-right:1px solid #eef2f6;min-height:100vh;padding:18px;position:fixed;left:0;top:0}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.brand-icon{width:44px;height:44;border-radius:8px;background:linear-gradient(135deg,#0ea5a0,#0f1724);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.brand-title{font-weight:700;font-size:16px}
+.nav{display:flex;flex-direction:column;gap:6px;margin-top:18px}
+.nav-link{padding:12px;border-radius:8px;color:#374151;text-decoration:none;display:flex;gap:12px;align-items:center}
+.nav-link.active{background:linear-gradient(90deg,#0ea5a0,#2b6fd6);color:#fff}
+.sidebar-footer{margin-top:18px;color:var(--muted);font-size:13px}
+
+/* main area */
+.main{margin-left:260px;flex:1;min-height:100vh;padding:20px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px}
+.top-actions{display:flex;align-items:center;gap:10px}
+.user-pill{display:flex;align-items:center;gap:10px;font-size:14px}
+.user-pill .badge{background:#ef4444;color:#fff;padding:3px 7px;border-radius:999px;margin-left:-10px;font-size:12px}
+
+/* content */
+.content{padding:8px 0}
+.card-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.stat{flex:0 0 180px;padding:16px;border-radius:12px}
+.stat-title{color:var(--muted);font-size:13px;margin-bottom:8px}
+.stat-value{font-size:20px;font-weight:700}
+.card-wide{padding:16px;border-radius:12px;margin-bottom:12px}
+.progressbar{height:14px;background:#eef2f6;border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#10b981,#059669);width:0%}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* table/list */
+.list-item{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:10px;border:1px solid #eef2f6;margin-bottom:8px}
+.list-item .meta{color:var(--muted);font-size:13px}
+.badge-status{padding:6px 10px;border-radius:8px;font-weight:600;font-size:13px}
+.badge-status.ok{background:#d1ffd6;color:#0b7a3a}
+.badge-status.warn{background:#fff4c2;color:#8a5a00}
+.badge-status.danger{background:#ffe2e2;color:#a30000}
+
+/* modal */
+.modal{position:fixed;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(6,12,20,0.4)}
+.modal-card{width:560px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+
+/* responsive smaller */
+@media (max-width:900px){
+  .grid-2{grid-template-columns:1fr}
+  .sidebar{position:relative;width:100%;height:auto;border-right:0}
+  .main{margin-left:0}
+}
